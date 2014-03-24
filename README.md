@@ -142,7 +142,6 @@ See [attributes/default.rb](attributes/default.rb)
 ```json
 {
   "ark": {
-    // default is /usr/local, src directory is intended for... so I override it
     "prefix_root": "/usr/local/src"
   },
   "chruby_build": {
@@ -153,7 +152,7 @@ See [attributes/default.rb](attributes/default.rb)
         "checksum": "c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941",
         "gems": ["bundler"],
         "environment": {
-          "ARCHFLAGS": "-arch x86_64", // uname -m
+          "ARCHFLAGS": "-arch x86_64",
           "CFLAGS": "-g -O2",
           "CPPFLAGS": "-I/usr/include -I/usr/local/include"
         }
