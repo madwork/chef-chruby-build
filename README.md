@@ -1,6 +1,6 @@
 # Chruby Build Chef Cookbook
 
-Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and build rubies from source with [Google Perftools](https://code.google.com/p/gperftools/) and [LibYAML](http://pyyaml.org/wiki/LibYAML) options.
+Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and build rubies from source with [Google Perftools](https://code.google.com/p/gperftools/) / [TCMalloc : Thread-Caching Malloc](http://gperftools.googlecode.com/svn/trunk/doc/tcmalloc.html) and [LibYAML](http://pyyaml.org/wiki/LibYAML) options.
 
 ## Requirements
 
@@ -13,9 +13,45 @@ Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and buil
 * `apt` - [Opscode Cookbook apt](https://github.com/opscode-cookbooks/apt)
 * `ark` - [Opscode Cookbook ark](https://github.com/opscode-cookbooks/ark)
 
-## Attributes
+## Installation
 
-#### chruby::default
+### From the [Community Site](http://community.opscode.com/cookbooks/apt-periodic)
+
+Use the knife command:
+
+```sh
+$ knife cookbook site install chruby-build
+```
+
+### With [librarian-chef](https://github.com/applicationsonline/librarian-chef)
+
+Edit `Cheffile`
+
+    site "http://community.opscode.com/api/v1"
+
+    cookbook 'chruby-build'
+
+Resolves and installs all of the dependencies:
+
+```sh
+$ librarian-chef install
+```
+
+### With [berkshelf](http://berkshelf.com/)
+
+Edit `Berksfile`
+
+  site :opscode
+
+  cookbook 'chruby-build'
+
+Install the cookbooks you specified in the Berksfile and their dependencies:
+
+```sh
+$ berks install
+```
+
+## Attributes
 
 See [attributes/default.rb](attributes/default.rb)
 
@@ -105,7 +141,10 @@ See [attributes/default.rb](attributes/default.rb)
 
 ```json
 {
-  "chruby-build": {
+  "ark": {
+    "prefix_root": "/usr/local/src" // default is /usr/local, src directory is intended for... so I override it
+  },
+  "chruby_build": {
     "rubies": [
       {
         "id": "ruby-2.1.1",
@@ -125,7 +164,7 @@ See [attributes/default.rb](attributes/default.rb)
 
 #### With [data bags](http://docs.opscode.com/essentials_data_bags.html)
 
-Data bag name **must be** rubies.
+Data bag name **must be** `rubies`
 
 ```sh
 $ knife data bag create rubies ruby-2.1.1
@@ -170,7 +209,7 @@ Just include `chruby-build::default` in your node's `run_list`:
 
 #### chruby-build::rubies
 
-This recipe install chruby and compile rubies from source if specified.
+This recipe install chruby and compile rubies from source.
 
 Just include `chruby-build::rubies` in your node's `run_list`:
 
@@ -191,6 +230,7 @@ Just include `chruby-build::rubies` in your node's `run_list`:
 * [vagrant](https://www.vagrantup.com/)
 * [kitchen-vagrant](https://github.com/test-kitchen/kitchen-vagrant)
 * [berkshelf](http://berkshelf.com/)
+* [serverspec](http://serverspec.org/)
 
 #### Installation
 
@@ -204,8 +244,22 @@ $ bundle exec berks install
 Running the tests:
 
 ```sh
-$ bundle exec kitchen test
+$ bundle exec kitchen test rubies-data-bags-ubuntu-1310
 ```
+
+Different test suites are available:
+
+```sh
+$ bundle exec kitchen list
+$ bundle exec kitchen setup default-ubuntu-1310
+$ bundle exec kitchen verify default-ubuntu-1310
+$ bundle exec kitchen destroy default-ubuntu-1310
+```
+
+## Todo
+
+* Add convenient LWRP to build rubies
+* Add attributes (version, url, checksum...) for make install LibYAML and Google Perftools
 
 ## Contributing
 
