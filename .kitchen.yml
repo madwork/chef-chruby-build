@@ -12,5 +12,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[chruby-build::default]
+      - recipe[chruby-build::rubies]
     attributes:
