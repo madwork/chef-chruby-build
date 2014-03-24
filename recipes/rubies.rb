@@ -26,11 +26,13 @@
 
 include_recipe "chruby-build::default"
 
-data_bag_rubies = data_bag('rubies')
-data_bag_rubie_items = data_bag_rubies.map{ |rubie| data_bag_item('rubies', rubie).raw_data }
-
-rubies = data_bag_rubie_items
-rubies ||= node['chruby_build']['rubies']
+rubies = begin
+  data_bag_rubies = data_bag('rubies')
+  data_bag_rubies.map{ |rubie| data_bag_item('rubies', rubie).raw_data }
+rescue Chef::Exceptions::InvalidDataBagPath, Chef::Exceptions::InvalidDataBagName
+  Log.info "Missing data bags directory data_bags or data_bags/rubies, try with node attributes."
+  node['chruby_build']['rubies']
+end
 
 if rubies.any?
 
@@ -79,7 +81,7 @@ if rubies.any?
       end
     end
 
-    rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-'))] # "ruby-2.1.1" => {:name=>"ruby", :version=>"2.1.1"}
+    rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-', 2))] # "ruby-2.0.0-p451" => {:name=>"ruby", :version=>"2.0.0-p451"}
     ark "ruby" do
       name rubie_ark[:name]
       version rubie_ark[:version]

@@ -12,5 +12,24 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[chruby-build::default]
+    attributes:
+
+  - name: rubies_data_bags
+    run_list:
       - recipe[chruby-build::rubies]
     attributes:
+
+  - name: rubies_attributes
+    run_list:
+      - recipe[chruby-build::rubies]
+    attributes:
+      chruby_build:
+        google_perftools: false
+        libyaml: false
+        rubies:
+          - id: "ruby-2.0.0-p247"
+            url: "http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz"
+            gems:
+              - bundler
+              - pry
