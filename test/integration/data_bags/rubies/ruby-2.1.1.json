@@ -1,0 +1,11 @@
+{
+  "id": "ruby-2.1.1",
+  "url": "http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz",
+  "checksum": "c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941",
+  "gems": ["bundler"],
+  "environment": {
+    "ARCHFLAGS": "-arch x86_64",
+    "CFLAGS": "-g -O2",
+    "CPPFLAGS": "-I/usr/include -I/usr/local/include"
+  }
+}
