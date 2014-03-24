@@ -41,9 +41,9 @@ $ librarian-chef install
 
 Edit `Berksfile`
 
-  site :opscode
+    site :opscode
 
-  cookbook 'chruby-build'
+    cookbook 'chruby-build'
 
 Install the cookbooks you specified in the Berksfile and their dependencies:
 
@@ -75,7 +75,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>chruby checksum (SHA256)</td>
     <td>String</td>
-    <td><tt>"d980872cf2cd047bc9dba78c4b72684c046e246c0fca5ea6509cae7b1ada63be"</tt></td>
+    <td><tt>"d980872cf2cd0..."</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['auto_switching']</tt></td>
@@ -142,7 +142,8 @@ See [attributes/default.rb](attributes/default.rb)
 ```json
 {
   "ark": {
-    "prefix_root": "/usr/local/src" // default is /usr/local, src directory is intended for... so I override it
+    // default is /usr/local, src directory is intended for... so I override it
+    "prefix_root": "/usr/local/src"
   },
   "chruby_build": {
     "rubies": [
@@ -152,7 +153,7 @@ See [attributes/default.rb](attributes/default.rb)
         "checksum": "c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941",
         "gems": ["bundler"],
         "environment": {
-          "ARCHFLAGS": "-arch x86_64", # uname -m
+          "ARCHFLAGS": "-arch x86_64", // uname -m
           "CFLAGS": "-g -O2",
           "CPPFLAGS": "-I/usr/include -I/usr/local/include"
         }
@@ -263,7 +264,6 @@ $ bundle exec kitchen destroy default-ubuntu-1310
 
 ## Contributing
 
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
