@@ -26,13 +26,13 @@
 
 include_recipe "chruby-build::default"
 
-rubies = begin
-  data_bag_rubies = data_bag('rubies')
-  data_bag_rubies.map{ |rubie| data_bag_item('rubies', rubie).raw_data }
+begin
+  rubies = data_bag('rubies').map{ |rubie| data_bag_item('rubies', rubie).raw_data }
 rescue Chef::Exceptions::InvalidDataBagPath, Chef::Exceptions::InvalidDataBagName
-  Log.info "Missing data bags directory data_bags or data_bags/rubies, try with node attributes."
-  node['chruby_build']['rubies']
+  Log.info "Missing data bags directory data_bags/rubies, try with node attributes."
 end
+
+rubies ||= node['chruby_build']['rubies']
 
 if rubies.any?
 
