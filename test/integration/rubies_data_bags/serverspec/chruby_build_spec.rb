@@ -44,7 +44,7 @@ describe file('/opt/rubies/ruby-2.1.1') do
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"') do
-  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--libdir=/usr/lib' '--with-opt-dir=/usr/local/lib' '--prefix=/opt/rubies/ruby-2.1.1' 'CFLAGS=-g -O2' 'LIBS=-ltcmalloc_minimal' 'CPPFLAGS=-I/usr/include -I/usr/local/include'" }
+  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local/lib' '--prefix=/opt/rubies/ruby-2.1.1' 'CFLAGS=-g -O2' 'LIBS=-ltcmalloc_minimal' 'CPPFLAGS=-I/usr/include -I/usr/local/include'" }
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -e \'print RUBY_VERSION\'"') do
@@ -63,4 +63,8 @@ end
 
 describe package('bundler') do
   it { should be_installed.by('gem') }
+end
+
+describe command('which bundle') do
+  it { should return_stdout "/opt/rubies/ruby-2.1.1/bin/bundle" }
 end

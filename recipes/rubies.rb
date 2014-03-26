@@ -88,7 +88,7 @@ if rubies.any?
       url rubie['url']
       checksum rubie['checksum'] if rubie.has_key?('checksum')
       environment gperftools_ark_environment || rubie.fetch('environment', {})
-      autoconf_opts ["--disable-install-doc", "--enable-shared", "--libdir=/usr/lib", "--with-opt-dir=/usr/local/lib", "--prefix=#{prefix_dir}"]
+      autoconf_opts ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local/lib", "--prefix=#{prefix_dir}"]
       action :install_with_make
     end
 

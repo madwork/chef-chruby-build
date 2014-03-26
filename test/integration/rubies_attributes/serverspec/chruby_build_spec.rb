@@ -40,7 +40,7 @@ describe file('/opt/rubies/ruby-2.0.0-p247') do
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.0.0-p247 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"') do
-  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--libdir=/usr/lib' '--with-opt-dir=/usr/local/lib' '--prefix=/opt/rubies/ruby-2.0.0-p247'" }
+  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local/lib' '--prefix=/opt/rubies/ruby-2.0.0-p247'" }
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.0.0-p247 -- "ruby -e \'print RUBY_VERSION\'"') do
@@ -63,4 +63,12 @@ end
 
 describe package('pry') do
   it { should be_installed.by('gem') }
+end
+
+describe command('which bundle') do
+  it { should return_stdout "/opt/rubies/ruby-2.0.0-p247/bin/bundle" }
+end
+
+describe command('which pry') do
+  it { should return_stdout "/opt/rubies/ruby-2.0.0-p247/bin/pry" }
 end
