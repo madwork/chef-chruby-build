@@ -36,7 +36,16 @@ rubies ||= node['chruby_build']['rubies']
 
 if rubies.any?
 
-  if node['chruby_build']['google_perftools']
+  node['chruby_build']['rubies_libs'].each do |lib|
+    package lib do
+      action :upgrade
+    end
+  end
+
+  gperftools = OpenStruct.new node['chruby_build']['google_perftools']
+  libyaml    = OpenStruct.new node['chruby_build']['libyaml']
+
+  if gperftools.enable
     case node['platform_version']
     when "12.04"
       package "libunwind7"
@@ -45,50 +54,41 @@ if rubies.any?
     end
 
     ark "google-perftools" do
-      url "https://gperftools.googlecode.com/files/gperftools-2.1.tar.gz"
-      version "2.1"
-      checksum "f3ade29924f89409d8279ab39e00af7420593baa4941c318db42e70ead7e494f"
+      url gperftools.url
+      version gperftools.version
+      checksum gperftools.checksum
       autoconf_opts ["--enable-frame-pointers"]
       action :install_with_make
     end
   end
 
-  node['chruby_build']['rubies_libs'].each do |lib|
-    package lib do
-      action :upgrade
-    end
-  end
-
-  if node['chruby_build']['libyaml']
+  if libyaml.enable
     ark "libyaml" do
-      url "http://pyyaml.org/download/libyaml/yaml-0.1.5.tar.gz"
-      version "0.1.5"
-      checksum "fa87ee8fb7b936ec04457bc044cd561155e1000a4d25029867752e543c2d3bef"
+      url libyaml.url
+      version libyaml.version
+      checksum libyaml.checksum
       autoconf_opts []
       action :install_with_make
     end
-    execute "ldconfig"
   end
+
+  execute "ldconfig"
 
   rubies.each do |rubie|
     prefix_dir = File.join(node['chruby_build']['rubies_path'], rubie['id'])
 
-    if node['chruby_build']['google_perftools']
-      gperftools_ark_environment = if rubie.has_key?('environment')
-        rubie['environment'].merge("LIBS" => [rubie['environment']['LIBS'], "-ltcmalloc_minimal"].compact.join(" "))
-      else
-        { "LIBS" => "-ltcmalloc_minimal" }
-      end
-    end
+    ark_environment = rubie.fetch('environment', {})
+    ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-ltcmalloc_minimal"].compact.join(" ")) if gperftools.enable
+    ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-lyaml"].compact.join(" ")) if libyaml.enable
 
     rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-', 2))] # "ruby-2.0.0-p451" => {:name=>"ruby", :version=>"2.0.0-p451"}
     ark "ruby" do
       name rubie_ark[:name]
       version rubie_ark[:version]
       url rubie['url']
-      checksum rubie['checksum'] if rubie.has_key?('checksum')
-      environment gperftools_ark_environment || rubie.fetch('environment', {})
-      autoconf_opts ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local/lib", "--prefix=#{prefix_dir}"]
+      checksum rubie['checksum']
+      environment ark_environment
+      autoconf_opts ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local", "--prefix=#{prefix_dir}"]
       action :install_with_make
     end
 

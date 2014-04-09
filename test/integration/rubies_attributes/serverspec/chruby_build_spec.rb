@@ -22,6 +22,10 @@ describe file('/etc/profile.d/chruby.sh') do
   it { should be_mode 644 }
 end
 
+describe package('libyaml-dev') do
+  it { should be_installed }
+end
+
 describe package('libssl-dev') do
   it { should be_installed }
 end
@@ -40,7 +44,7 @@ describe file('/opt/rubies/ruby-2.0.0-p247') do
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.0.0-p247 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"') do
-  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local/lib' '--prefix=/opt/rubies/ruby-2.0.0-p247'" }
+  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.0.0-p247'" }
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.0.0-p247 -- "ruby -e \'print RUBY_VERSION\'"') do
