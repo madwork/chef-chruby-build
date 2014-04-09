@@ -75,7 +75,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>chruby checksum (SHA256)</td>
     <td>String</td>
-    <td><tt>"d980872cf2cd0..."</tt></td>
+    <td><tt>"d980872cf2cd047b..."</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['auto_switching']</tt></td>
@@ -110,7 +110,7 @@ See [attributes/default.rb](attributes/default.rb)
     <td><tt>["libssl-dev", "libreadline-dev", "zlib1g-dev"]</tt></td>
   </tr>
   <tr>
-    <td colspan="3"><tt>['chruby_build']['google_perftools']</tt></td>
+    <td colspan="3"><tt>['chruby_build']['google_perftools']['enable']</tt></td>
   </tr>
   <tr>
     <td>compile rubies with google_perftools (tcmalloc)</td>
@@ -118,12 +118,60 @@ See [attributes/default.rb](attributes/default.rb)
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td colspan="3"><tt>['chruby_build']['libyaml']</tt></td>
+    <td colspan="3"><tt>['chruby_build']['google_perftools']['url']</tt></td>
+  </tr>
+  <tr>
+    <td>google_perftools url</td>
+    <td>String</td>
+    <td><tt>"https://gperftools.googlecode.com/files/gperftools-2.1.tar.gz"</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['google_perftools']['version']</tt></td>
+  </tr>
+  <tr>
+    <td>google_perftools version</td>
+    <td>String</td>
+    <td><tt>"2.1"</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['google_perftools']['checksum']</tt></td>
+  </tr>
+  <tr>
+    <td>google_perftools checksum</td>
+    <td>String</td>
+    <td><tt>"f3ade29924f89409..."</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['libyaml']['enable']</tt></td>
   </tr>
   <tr>
     <td>compile libyaml (latest release)</td>
     <td>Boolean</td>
     <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['libyaml']['url']</tt></td>
+  </tr>
+  <tr>
+    <td>libyaml url</td>
+    <td>String</td>
+    <td><tt>"http://pyyaml.org/download/libyaml/yaml-0.1.6.tar.gz"</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['libyaml']['version']</tt></td>
+  </tr>
+  <tr>
+    <td>libyaml version</td>
+    <td>String</td>
+    <td><tt>"0.1.6"</tt></td>
+  </tr>
+  <tr>
+    <td colspan="3"><tt>['chruby_build']['libyaml']['checksum']</tt></td>
+  </tr>
+  <tr>
+    <td>libyaml checksum</td>
+    <td>String</td>
+    <td><tt>"7da6971b4bd08a98..."</tt></td>
   </tr>
 </table>
 
@@ -259,7 +307,6 @@ $ bundle exec kitchen destroy default-ubuntu-1310
 ## Todo
 
 * Add convenient LWRP to build rubies
-* Add attributes (version, url, checksum...) for make install LibYAML and Google Perftools
 
 ## Contributing
 
