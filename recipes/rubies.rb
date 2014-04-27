@@ -42,6 +42,11 @@ if rubies.any?
     end
   end
 
+  execute "ldconfig" do
+    command "ldconfig"
+    action :nothing
+  end
+
   gperftools = OpenStruct.new node['chruby_build']['google_perftools']
   libyaml    = OpenStruct.new node['chruby_build']['libyaml']
 
@@ -59,6 +64,7 @@ if rubies.any?
       checksum gperftools.checksum
       autoconf_opts ["--enable-frame-pointers"]
       action :install_with_make
+      notifies :run, "execute[ldconfig]", :immediately
     end
   end
 
@@ -69,10 +75,9 @@ if rubies.any?
       checksum libyaml.checksum
       autoconf_opts []
       action :install_with_make
+      notifies :run, "execute[ldconfig]", :immediately
     end
   end
-
-  execute "ldconfig"
 
   rubies.each do |rubie|
     prefix_dir = File.join(node['chruby_build']['rubies_path'], rubie['id'])
