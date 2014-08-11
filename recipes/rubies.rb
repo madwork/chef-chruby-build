@@ -93,7 +93,7 @@ if rubies.any?
     ark_autoconf_opts = ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local", "--prefix=#{prefix_dir}"]
 
     if node['platform_version'] == "14.04"
-      ark_autoconf_opts.push "--with-readline-dir=/usr/lib/x86_64-linux-gnu" if node['chruby_build']['rubies_libs'].include?("libreadline-dev")
+      ark_autoconf_opts.push "--with-readline-dir=/usr/lib/x86_64-linux-gnu/libreadline.so" if node['chruby_build']['rubies_libs'].include?("libreadline-dev")
     end
 
     rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-', 2))] # "ruby-2.0.0-p451" => {:name=>"ruby", :version=>"2.0.0-p451"}
