@@ -10,12 +10,12 @@ Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and buil
 
 #### depends
 
-* `apt` - [Opscode Cookbook apt](https://github.com/opscode-cookbooks/apt)
-* `ark` - [Opscode Cookbook ark](https://github.com/opscode-cookbooks/ark)
+* `apt` - [Opscode Cookbook apt](https://supermarket.getchef.com/cookbooks/apt)
+* `ark` - [Opscode Cookbook ark](https://supermarket.getchef.com/cookbooks/ark)
 
 ## Installation
 
-### From the [Community Site](http://community.opscode.com/cookbooks/apt-periodic)
+### From the [Community Site](https://supermarket.getchef.com/cookbooks/chruby-build)
 
 Use the knife command:
 
@@ -27,9 +27,9 @@ $ knife cookbook site install chruby-build
 
 Edit `Cheffile`
 
-    site "http://community.opscode.com/api/v1"
+    site "https://supermarket.getchef.com/api/v1"
 
-    cookbook 'chruby-build'
+    cookbook 'chruby-build', '~> 0.3.0'
 
 Resolves and installs all of the dependencies:
 
@@ -41,9 +41,9 @@ $ librarian-chef install
 
 Edit `Berksfile`
 
-    site :opscode
+    source "https://supermarket.getchef.com"
 
-    cookbook 'chruby-build'
+    cookbook 'chruby-build', '~> 0.3.0'
 
 Install the cookbooks you specified in the Berksfile and their dependencies:
 
@@ -289,19 +289,25 @@ $ bundle install
 $ bundle exec berks install
 ```
 
-Running the tests:
+Running unit tests:
 
 ```sh
-$ bundle exec kitchen test rubies-data-bags-ubuntu-1310
+$ bundle exec rspec
+```
+
+Running integration tests:
+
+```sh
+$ bundle exec kitchen test rubies-data-bags-ubuntu-1404
 ```
 
 Different test suites are available:
 
 ```sh
 $ bundle exec kitchen list
-$ bundle exec kitchen setup default-ubuntu-1310
-$ bundle exec kitchen verify default-ubuntu-1310
-$ bundle exec kitchen destroy default-ubuntu-1310
+$ bundle exec kitchen setup default-ubuntu-1404
+$ bundle exec kitchen verify default-ubuntu-1404
+$ bundle exec kitchen destroy default-ubuntu-1404
 ```
 
 ## Todo
