@@ -107,7 +107,7 @@ if rubies.any?
       action :install_with_make
     end
 
-    directory "gemrc" do
+    directory "etc" do
       path File.join(prefix_dir, "etc")
       owner "root"
       group "root"
