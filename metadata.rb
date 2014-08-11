@@ -6,4 +6,4 @@ description      'Chef cookbook to install chruby and build rubies from source w
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.1'
 supports         'ubuntu', '>= 12.04'
-depends          'ark', '>= 0.6'
+depends          'ark', '>= 0.8'
