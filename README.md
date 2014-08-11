@@ -1,5 +1,8 @@
 # Chruby Build Chef Cookbook
 
+[![Build Status](https://img.shields.io/travis/madwork/chef-chruby-build.svg)](https://travis-ci.org/madwork/chef-chruby-build)
+[![Cookbook Version](https://img.shields.io/cookbook/v/chruby-build.svg)](https://supermarket.getchef.com/cookbooks/chruby-build)
+
 Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and build rubies from source with [Google Perftools](https://code.google.com/p/gperftools/) / [TCMalloc : Thread-Caching Malloc](http://gperftools.googlecode.com/svn/trunk/doc/tcmalloc.html) and [LibYAML](http://pyyaml.org/wiki/LibYAML) options.
 
 ## Requirements
