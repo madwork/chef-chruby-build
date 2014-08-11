@@ -30,6 +30,10 @@ describe package('libunwind8'), if: os[:release] == '14.04' do
   it { should be_installed }
 end
 
+describe package('g++') do
+  it { should be_installed }
+end
+
 describe file('/usr/local/lib/libtcmalloc_minimal.so') do
   it { should be_file }
 end
