@@ -52,6 +52,8 @@ if rubies.any?
   libyaml    = OpenStruct.new node['chruby_build']['libyaml']
 
   if gperftools.enable
+    package "g++"
+
     case node['platform_version']
     when "12.04"
       package "libunwind7"
