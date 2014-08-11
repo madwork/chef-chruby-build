@@ -22,7 +22,19 @@ describe file('/etc/profile.d/chruby.sh') do
   it { should be_mode 644 }
 end
 
+describe package('libunwind7'), if: os[:release] == '12.04' do
+  it { should be_installed }
+end
+
+describe package('libunwind8'), if: os[:release] == '14.04' do
+  it { should be_installed }
+end
+
 describe file('/usr/local/lib/libtcmalloc_minimal.so') do
+  it { should be_file }
+end
+
+describe file('/usr/local/lib/libyaml.so') do
   it { should be_file }
 end
 
@@ -47,8 +59,12 @@ describe file('/opt/rubies/ruby-2.1.1') do
   it { should be_owned_by 'root' }
 end
 
-describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"') do
+describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"'), if: os[:release] == '12.04' do
   it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.1.1' 'CFLAGS=-g -O2' 'LIBS=-ltcmalloc_minimal -lyaml' 'CPPFLAGS=-I/usr/include -I/usr/local/include'" }
+end
+
+describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -r rbconfig -e \'print RbConfig::CONFIG[\"configure_args\"]\'"'), if: os[:release] == '14.04' do
+  it { should return_stdout "'--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.1.1' '--with-readline-dir=/usr/lib/x86_64-linux-gnu/libreadline.so' 'CFLAGS=-g -O2' 'LIBS=-ltcmalloc_minimal -lyaml' 'CPPFLAGS=-I/usr/include -I/usr/local/include'" }
 end
 
 describe command('/usr/local/bin/chruby-exec ruby-2.1.1 -- "ruby -e \'print RUBY_VERSION\'"') do

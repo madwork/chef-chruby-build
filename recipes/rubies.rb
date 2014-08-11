@@ -89,6 +89,12 @@ if rubies.any?
     ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-ltcmalloc_minimal"].compact.join(" ")) if gperftools.enable
     ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-lyaml"].compact.join(" ")) if libyaml.enable
 
+    ark_autoconf_opts = ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local", "--prefix=#{prefix_dir}"]
+
+    if node['platform_version'] == "14.04"
+      ark_autoconf_opts.push "--with-readline-dir=/usr/lib/x86_64-linux-gnu" if node['chruby_build']['rubies_libs'].include?("libreadline-dev")
+    end
+
     rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-', 2))] # "ruby-2.0.0-p451" => {:name=>"ruby", :version=>"2.0.0-p451"}
     ark "ruby" do
       name rubie_ark[:name]
@@ -96,7 +102,7 @@ if rubies.any?
       url rubie['url']
       checksum rubie['checksum']
       environment ark_environment
-      autoconf_opts ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local", "--prefix=#{prefix_dir}"]
+      autoconf_opts ark_autoconf_opts
       action :install_with_make
     end
 
