@@ -30,8 +30,9 @@ include_recipe "apt"
 
 begin
   rubies = data_bag('rubies').map{ |rubie| data_bag_item('rubies', rubie) }
-rescue Chef::Exceptions::InvalidDataBagPath, Chef::Exceptions::InvalidDataBagName
-  Log.info "Missing data bags directory data_bags/rubies, try with node attributes."
+rescue Chef::Exceptions::InvalidDataBagPath, Chef::Exceptions::InvalidDataBagName, Net::HTTPServerException => ex
+  Log.warn ex.message
+  Log.info "Missing data bags directory #{Chef::Config[:data_bag_path]}/rubies, try with node attributes."
 end
 
 rubies ||= node['chruby_build']['rubies']
