@@ -27,7 +27,7 @@
 include_recipe "ark"
 
 ark "chruby" do
-  url "https://codeload.github.com/postmodern/chruby/tar.gz/v#{node['chruby_build']['version']}"
+  url "https://github.com/postmodern/chruby/archive/v#{node['chruby_build']['version']}.tar.gz"
   extension "tar.gz"
   version node['chruby_build']['version']
   checksum node['chruby_build']['checksum']
