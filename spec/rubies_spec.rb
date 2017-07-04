@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe "chruby-build::rubies" do
-  let(:chef_run) { ChefSpec::Runner.new }
+  let(:chef_run) { ChefSpec::SoloRunner.new }
 
   let(:rubies) { JSON.parse File.read("test/integration/rubies_data_bags/data_bags/rubies/ruby-2.1.2.json") }
 
