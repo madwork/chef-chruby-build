@@ -10,6 +10,12 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: ubuntu-16.04-chef-12
+    driver:
+      box: bento/ubuntu-16.04
+    provisioner:
+      require_chef_omnibus: 12.21.3
 
 suites:
   - name: default
@@ -37,8 +43,8 @@ suites:
         libyaml:
           enable: false
         rubies:
-          - id: "ruby-2.0.0-p247"
-            url: "http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz"
+          - id: "ruby-2.4.1"
+            url: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz"
             gems:
               - bundler
               - pry
