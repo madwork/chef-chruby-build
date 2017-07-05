@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe "chruby-build::default" do
-  let(:chef_run) { ChefSpec::Runner.new }
+  let(:chef_run) { ChefSpec::SoloRunner.new }
 
   before { chef_run.converge(described_recipe) }
 

@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem 'berkshelf', '~> 3.1.5'
-gem 'chefspec', '~> 4.0.1'
+gem 'berkshelf', '~> 6.0'
+gem 'chefspec', '~> 4.0'
 
 group :integration do
-  gem 'test-kitchen', '~> 1.2'
-  gem 'kitchen-vagrant', '~> 0.15.0'
+  gem 'test-kitchen', '~> 1.0'
+  gem 'kitchen-vagrant', '~> 1.0'
 end

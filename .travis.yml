@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-  - 2.0.0
-  - 2.1.1
-bundler_args: --without integration --jobs 7
+  - 2.3.4
+  - 2.4.1
+bundler_args: --without integration --jobs 2
 script:
   - bundle exec rspec

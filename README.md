@@ -1,9 +1,9 @@
 # Chruby Build Chef Cookbook
 
 [![Build Status](https://img.shields.io/travis/madwork/chef-chruby-build.svg)](https://travis-ci.org/madwork/chef-chruby-build)
-[![Cookbook Version](https://img.shields.io/cookbook/v/chruby-build.svg)](https://supermarket.getchef.com/cookbooks/chruby-build)
+[![Cookbook Version](https://img.shields.io/cookbook/v/chruby-build.svg)](https://supermarket.chef.io/cookbooks/chruby-build)
 
-Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and build rubies from source with [Google Perftools](https://code.google.com/p/gperftools/) / [TCMalloc : Thread-Caching Malloc](http://gperftools.googlecode.com/svn/trunk/doc/tcmalloc.html) and [LibYAML](http://pyyaml.org/wiki/LibYAML) options.
+Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and build rubies from source with [Google Perftools](https://github.com/gperftools/gperftools) / [TCMalloc : Thread-Caching Malloc](http://goog-perftools.sourceforge.net/doc/tcmalloc.html) and [LibYAML](http://pyyaml.org/wiki/LibYAML) options.
 
 ## Requirements
 
@@ -13,12 +13,12 @@ Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and buil
 
 #### depends
 
-* `apt` - [Opscode Cookbook apt](https://supermarket.getchef.com/cookbooks/apt)
-* `ark` - [Opscode Cookbook ark](https://supermarket.getchef.com/cookbooks/ark)
+* `apt` - [Opscode Cookbook apt](https://supermarket.chef.io/cookbooks/apt)
+* `ark` - [Opscode Cookbook ark](https://supermarket.chef.io/cookbooks/ark)
 
 ## Installation
 
-### From the [Community Site](https://supermarket.getchef.com/cookbooks/chruby-build)
+### From the [Community Site](https://supermarket.chef.io/cookbooks/chruby-build)
 
 Use the knife command:
 
@@ -30,9 +30,9 @@ $ knife cookbook site install chruby-build
 
 Edit `Cheffile`
 
-    site "https://supermarket.getchef.com/api/v1"
+    site "https://supermarket.chef.io/api/v1"
 
-    cookbook 'chruby-build', '~> 0.3.0'
+    cookbook 'chruby-build', '~> 0.4.0'
 
 Resolves and installs all of the dependencies:
 
@@ -46,7 +46,7 @@ Edit `Berksfile`
 
     source "https://supermarket.getchef.com"
 
-    cookbook 'chruby-build', '~> 0.3.0'
+    cookbook 'chruby-build', '~> 0.4.0'
 
 Install the cookbooks you specified in the Berksfile and their dependencies:
 
@@ -70,7 +70,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>chruby version</td>
     <td>String</td>
-    <td><tt>"0.3.8"</tt></td>
+    <td><tt>"0.3.9"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['checksum']</tt></td>
@@ -78,7 +78,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>chruby checksum (SHA256)</td>
     <td>String</td>
-    <td><tt>"d980872cf2cd047b..."</tt></td>
+    <td><tt>"7220a96e355b8a613929881c091ca85ec809153988d7d691299e0a16806b42fd"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['auto_switching']</tt></td>
@@ -126,7 +126,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools url</td>
     <td>String</td>
-    <td><tt>"https://gperftools.googlecode.com/files/gperftools-2.1.tar.gz"</tt></td>
+    <td><tt>"https://github.com/gperftools/gperftools/releases/download/gperftools-2.3/gperftools-2.3.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['version']</tt></td>
@@ -134,7 +134,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools version</td>
     <td>String</td>
-    <td><tt>"2.1"</tt></td>
+    <td><tt>"2.3"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['checksum']</tt></td>
@@ -142,7 +142,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools checksum</td>
     <td>String</td>
-    <td><tt>"f3ade29924f89409..."</tt></td>
+    <td><tt>"093452ad45d639093c144b4ec732a3417e8ee1f3744f2b0f8d45c996223385ce"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['enable']</tt></td>
@@ -158,7 +158,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml url</td>
     <td>String</td>
-    <td><tt>"http://pyyaml.org/download/libyaml/yaml-0.1.6.tar.gz"</tt></td>
+    <td><tt>"http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['version']</tt></td>
@@ -166,7 +166,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml version</td>
     <td>String</td>
-    <td><tt>"0.1.6"</tt></td>
+    <td><tt>"0.1.7"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['checksum']</tt></td>
@@ -174,7 +174,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml checksum</td>
     <td>String</td>
-    <td><tt>"7da6971b4bd08a98..."</tt></td>
+    <td><tt>"8088e457264a98ba451a90b8661fcb4f9d6f478f7265d48322a196cec2480729"</tt></td>
   </tr>
 </table>
 
@@ -182,7 +182,7 @@ See [attributes/default.rb](attributes/default.rb)
 
 ### Rubies attributes
 
-* `id` - required id and **must be** split by a dash (eg. ruby-2.1.1)
+* `id` - required id and **must be** split by a dash (eg. ruby-2.3.4)
 * `url` - required ruby source
 * `checksum` - optional sha256 package checksum
 * `gems` - optional gems to install
@@ -198,9 +198,9 @@ See [attributes/default.rb](attributes/default.rb)
   "chruby_build": {
     "rubies": [
       {
-        "id": "ruby-2.1.1",
-        "url": "http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz",
-        "checksum": "c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941",
+        "id": "ruby-2.3.4",
+        "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
+        "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
         "gems": ["bundler"],
         "environment": {
           "ARCHFLAGS": "-arch x86_64",
@@ -218,16 +218,16 @@ See [attributes/default.rb](attributes/default.rb)
 Data bag name **must be** `rubies`
 
 ```sh
-$ knife data bag create rubies ruby-2.1.1
+$ knife data bag create rubies ruby-2.3.4
 ```
 
-Edit data bag `ruby-2.1.1.json`
+Edit data bag `ruby-2.3.4.json`
 
 ```json
 {
-  "id": "ruby-2.1.1",
-  "url": "http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz",
-  "checksum": "c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941",
+  "id": "ruby-2.3.4",
+  "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
+  "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
   "gems": ["bundler"],
   "environment": {
     "ARCHFLAGS": "-arch x86_64",
@@ -245,7 +245,7 @@ Data bags have **higher** precedence.
 
 #### chruby-build::default
 
-This recipe only install chruby.
+This recipe only installs chruby.
 
 Just include `chruby-build::default` in your node's `run_list`:
 
@@ -260,7 +260,7 @@ Just include `chruby-build::default` in your node's `run_list`:
 
 #### chruby-build::rubies
 
-This recipe install chruby and compile rubies from source.
+This recipe installs chruby and compile rubies from source.
 
 Just include `chruby-build::rubies` in your node's `run_list`:
 
@@ -312,10 +312,6 @@ $ bundle exec kitchen setup default-ubuntu-1404
 $ bundle exec kitchen verify default-ubuntu-1404
 $ bundle exec kitchen destroy default-ubuntu-1404
 ```
-
-## Todo
-
-* Add convenient LWRP to build rubies
 
 ## Contributing
 
