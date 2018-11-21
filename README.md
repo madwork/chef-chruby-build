@@ -201,7 +201,7 @@ See [attributes/default.rb](attributes/default.rb)
         "id": "ruby-2.3.4",
         "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
         "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
-        "gems": ["bundler"],
+        "gems": ["bundler 1.17.1"],
         "environment": {
           "ARCHFLAGS": "-arch x86_64",
           "CFLAGS": "-g -O2",
@@ -228,7 +228,7 @@ Edit data bag `ruby-2.3.4.json`
   "id": "ruby-2.3.4",
   "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
   "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
-  "gems": ["bundler"],
+  "gems": ["bundler 1.17.1"],
   "environment": {
     "ARCHFLAGS": "-arch x86_64",
     "CFLAGS": "-g -O2",

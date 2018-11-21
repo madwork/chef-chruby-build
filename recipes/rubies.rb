@@ -118,9 +118,11 @@ if rubies.any?
       mode "0644"
     end
 
-    rubie['gems'].each do |gem_name|
+    rubie['gems'].each do |gem|
+      gem_name, gem_version = gem.split(' ')
       gem_package gem_name do
-        gem_binary("chruby-exec #{rubie['id']} -- gem")
+        gem_binary "chruby-exec #{rubie['id']} -- gem"
+        version gem_version if gem_version
       end
     end
   end
