@@ -198,9 +198,9 @@ See [attributes/default.rb](attributes/default.rb)
   "chruby_build": {
     "rubies": [
       {
-        "id": "ruby-2.3.4",
-        "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
-        "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
+        "id": "ruby-2.5.3",
+        "url": "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz",
+        "checksum": "9828d03852c37c20fa333a0264f2490f07338576734d910ee3fd538c9520846c",
         "gems": ["bundler 1.17.1"],
         "environment": {
           "ARCHFLAGS": "-arch x86_64",
@@ -218,16 +218,16 @@ See [attributes/default.rb](attributes/default.rb)
 Data bag name **must be** `rubies`
 
 ```sh
-$ knife data bag create rubies ruby-2.3.4
+$ knife data bag create rubies ruby-2.5.3
 ```
 
-Edit data bag `ruby-2.3.4.json`
+Edit data bag `ruby-2.5.3.json`
 
 ```json
 {
-  "id": "ruby-2.3.4",
-  "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
-  "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
+  "id": "ruby-2.5.3",
+  "url": "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz",
+  "checksum": "9828d03852c37c20fa333a0264f2490f07338576734d910ee3fd538c9520846c",
   "gems": ["bundler 1.17.1"],
   "environment": {
     "ARCHFLAGS": "-arch x86_64",
@@ -277,11 +277,11 @@ Just include `chruby-build::rubies` in your node's `run_list`:
 
 #### Dependencies
 
-* [bundler](http://bundler.io/)
+* [bundler](https://bundler.io/)
 * [vagrant](https://www.vagrantup.com/)
 * [kitchen-vagrant](https://github.com/test-kitchen/kitchen-vagrant)
-* [berkshelf](http://berkshelf.com/)
-* [serverspec](http://serverspec.org/)
+* [berkshelf](https://docs.chef.io/berkshelf.html)
+* [serverspec](https://serverspec.org/)
 
 #### Installation
 
