@@ -12,6 +12,6 @@ default['chruby_build']['google_perftools']['version'] = "2.7"
 default['chruby_build']['google_perftools']['checksum'] = "3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a"
 
 default['chruby_build']['libyaml']['enable'] = true
-default['chruby_build']['libyaml']['url'] = "http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz"
-default['chruby_build']['libyaml']['version'] = "0.1.7"
-default['chruby_build']['libyaml']['checksum'] = "8088e457264a98ba451a90b8661fcb4f9d6f478f7265d48322a196cec2480729"
+default['chruby_build']['libyaml']['url'] = "https://pyyaml.org/download/libyaml/yaml-0.2.1.tar.gz"
+default['chruby_build']['libyaml']['version'] = "0.2.1"
+default['chruby_build']['libyaml']['checksum'] = "78281145641a080fb32d6e7a87b9c0664d611dcb4d542e90baf731f51cbb59cd"

@@ -158,7 +158,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml url</td>
     <td>String</td>
-    <td><tt>"http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz"</tt></td>
+    <td><tt>"https://pyyaml.org/download/libyaml/yaml-0.2.1.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['version']</tt></td>
@@ -166,7 +166,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml version</td>
     <td>String</td>
-    <td><tt>"0.1.7"</tt></td>
+    <td><tt>"0.2.1"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['checksum']</tt></td>
@@ -174,7 +174,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml checksum</td>
     <td>String</td>
-    <td><tt>"8088e457264a98ba451a90b8661fcb4f9d6f478f7265d48322a196cec2480729"</tt></td>
+    <td><tt>"78281145641a080fb32d6e7a87b9c0664d611dcb4d542e90baf731f51cbb59cd"</tt></td>
   </tr>
 </table>
 
