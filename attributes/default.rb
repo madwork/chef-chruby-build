@@ -7,9 +7,9 @@ default['chruby_build']['rubies_path'] = "/opt/rubies"
 default['chruby_build']['rubies_libs'] = ["libssl-dev", "libreadline-dev", "zlib1g-dev"]
 
 default['chruby_build']['google_perftools']['enable'] = true
-default['chruby_build']['google_perftools']['url'] = "https://github.com/gperftools/gperftools/releases/download/gperftools-2.3/gperftools-2.3.tar.gz"
-default['chruby_build']['google_perftools']['version'] = "2.3"
-default['chruby_build']['google_perftools']['checksum'] = "093452ad45d639093c144b4ec732a3417e8ee1f3744f2b0f8d45c996223385ce"
+default['chruby_build']['google_perftools']['url'] = "https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"
+default['chruby_build']['google_perftools']['version'] = "2.7"
+default['chruby_build']['google_perftools']['checksum'] = "3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a"
 
 default['chruby_build']['libyaml']['enable'] = true
 default['chruby_build']['libyaml']['url'] = "http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz"

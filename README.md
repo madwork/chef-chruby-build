@@ -126,7 +126,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools url</td>
     <td>String</td>
-    <td><tt>"https://github.com/gperftools/gperftools/releases/download/gperftools-2.3/gperftools-2.3.tar.gz"</tt></td>
+    <td><tt>"https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['version']</tt></td>
@@ -134,7 +134,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools version</td>
     <td>String</td>
-    <td><tt>"2.3"</tt></td>
+    <td><tt>"2.7"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['checksum']</tt></td>
@@ -142,7 +142,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools checksum</td>
     <td>String</td>
-    <td><tt>"093452ad45d639093c144b4ec732a3417e8ee1f3744f2b0f8d45c996223385ce"</tt></td>
+    <td><tt>"3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['enable']</tt></td>
