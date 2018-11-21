@@ -1,7 +1,7 @@
 {
-  "id": "ruby-2.3.4",
-  "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
-  "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
+  "id": "ruby-2.5.3",
+  "url": "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz",
+  "checksum": "9828d03852c37c20fa333a0264f2490f07338576734d910ee3fd538c9520846c",
   "gems": ["bundler 1.17.1", "pry"],
   "environment": {
     "ARCHFLAGS": "-arch x86_64",
