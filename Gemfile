@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem 'berkshelf', '~> 6.0'
-gem 'chefspec', '~> 4.0'
+gem 'berkshelf', '~> 7.0'
+gem 'chefspec', '~> 7.0'
 
 group :integration do
   gem 'test-kitchen', '~> 1.0'
