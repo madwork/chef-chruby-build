@@ -26,7 +26,6 @@
 require 'ostruct'
 
 include_recipe "chruby-build::default"
-include_recipe "apt"
 
 begin
   rubies = data_bag('rubies').map{ |rubie| data_bag_item('rubies', rubie) }

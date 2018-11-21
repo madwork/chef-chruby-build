@@ -9,7 +9,6 @@ describe "chruby-build::rubies" do
   end
 
   it { is_expected.to include_recipe("chruby-build::default") }
-  it { is_expected.to include_recipe("apt") }
   it { is_expected.to install_with_make_ark("ruby") }
   it { is_expected.to create_directory('/opt/rubies/ruby-2.3.4/etc') }
   it { is_expected.to create_template("/opt/rubies/ruby-2.3.4/etc/gemrc") }
