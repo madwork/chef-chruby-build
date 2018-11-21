@@ -13,7 +13,11 @@ Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and buil
 
 #### depends
 
-* `ark` - [Opscode Cookbook ark](https://supermarket.chef.io/cookbooks/ark)
+* `ark >= 4.0.0` - [Opscode Cookbook ark](https://supermarket.chef.io/cookbooks/ark)
+
+#### version
+
+* `chef >= 13.4`
 
 ## Installation
 
