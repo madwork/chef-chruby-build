@@ -26,30 +26,16 @@ Chef cookbook to install [chruby](https://github.com/postmodern/chruby) and buil
 Use the knife command:
 
 ```sh
-$ knife cookbook site install chruby-build
-```
-
-### With [librarian-chef](https://github.com/applicationsonline/librarian-chef)
-
-Edit `Cheffile`
-
-    site "https://supermarket.chef.io/api/v1"
-
-    cookbook 'chruby-build', '~> 0.4.0'
-
-Resolves and installs all of the dependencies:
-
-```sh
-$ librarian-chef install
+$ knife supermarket install chruby-build
 ```
 
 ### With [berkshelf](http://berkshelf.com/)
 
 Edit `Berksfile`
 
-    source "https://supermarket.getchef.com"
+    source "https://supermarket.chef.io"
 
-    cookbook 'chruby-build', '~> 0.4.0'
+    cookbook 'chruby-build', '~> 1.0.0'
 
 Install the cookbooks you specified in the Berksfile and their dependencies:
 
@@ -60,126 +46,6 @@ $ berks install
 ## Attributes
 
 See [attributes/default.rb](attributes/default.rb)
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['version']</tt></td>
-  </tr>
-  <tr>
-    <td>chruby version</td>
-    <td>String</td>
-    <td><tt>"0.3.9"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['checksum']</tt></td>
-  </tr>
-  <tr>
-    <td>chruby checksum (SHA256)</td>
-    <td>String</td>
-    <td><tt>"7220a96e355b8a613929881c091ca85ec809153988d7d691299e0a16806b42fd"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['auto_switching']</tt></td>
-  </tr>
-  <tr>
-    <td>chruby auto switching</td>
-    <td>Boolean</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['rubies']</tt></td>
-  </tr>
-  <tr>
-    <td>rubies to install</td>
-    <td>Array</td>
-    <td><tt>[]</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['rubies_path']</tt></td>
-  </tr>
-  <tr>
-    <td>path to install rubies</td>
-    <td>String</td>
-    <td><tt>"/opt/rubies"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['rubies_libs']</tt></td>
-  </tr>
-  <tr>
-    <td>usefull libraries to install</td>
-    <td>Array</td>
-    <td><tt>["libssl-dev", "libreadline-dev", "zlib1g-dev"]</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['google_perftools']['enable']</tt></td>
-  </tr>
-  <tr>
-    <td>compile rubies with google_perftools (tcmalloc)</td>
-    <td>Boolean</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['google_perftools']['url']</tt></td>
-  </tr>
-  <tr>
-    <td>google_perftools url</td>
-    <td>String</td>
-    <td><tt>"https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['google_perftools']['version']</tt></td>
-  </tr>
-  <tr>
-    <td>google_perftools version</td>
-    <td>String</td>
-    <td><tt>"2.7"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['google_perftools']['checksum']</tt></td>
-  </tr>
-  <tr>
-    <td>google_perftools checksum</td>
-    <td>String</td>
-    <td><tt>"3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['libyaml']['enable']</tt></td>
-  </tr>
-  <tr>
-    <td>compile libyaml (latest release)</td>
-    <td>Boolean</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['libyaml']['url']</tt></td>
-  </tr>
-  <tr>
-    <td>libyaml url</td>
-    <td>String</td>
-    <td><tt>"https://pyyaml.org/download/libyaml/yaml-0.2.1.tar.gz"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['libyaml']['version']</tt></td>
-  </tr>
-  <tr>
-    <td>libyaml version</td>
-    <td>String</td>
-    <td><tt>"0.2.1"</tt></td>
-  </tr>
-  <tr>
-    <td colspan="3"><tt>['chruby_build']['libyaml']['checksum']</tt></td>
-  </tr>
-  <tr>
-    <td>libyaml checksum</td>
-    <td>String</td>
-    <td><tt>"78281145641a080fb32d6e7a87b9c0664d611dcb4d542e90baf731f51cbb59cd"</tt></td>
-  </tr>
-</table>
 
 ## Usage
 
