@@ -42,55 +42,49 @@ describe package('zlib1g-dev') do
   it { is_expected.to be_installed }
 end
 
-describe file('/opt/rubies/ruby-2.4.1') do
+describe file('/opt/rubies/ruby-2.4.5') do
   it { is_expected.to be_directory }
   it { is_expected.to be_owned_by 'root' }
 end
 
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -r rbconfig -e \'print RbConfig::CONFIG["configure_args"]\'') do
-  its(:stdout) { is_expected.to eq " '--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.4.1'" }
+describe "ruby-2.4.5" do
+  before { command('chruby ruby-2.4.5') }
+
+  describe command('ruby -r rbconfig -e \'print RbConfig::CONFIG["configure_args"]\'') do
+    its(:stdout) { is_expected.to eq " '--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.4.5'" }
+  end
+
+  describe command('ruby -e \'print RUBY_VERSION\'') do
+    its(:stdout) { is_expected.to eq "2.4.5" }
+  end
+
+  if os[:release] == '18.04'
+    describe command('ruby -r yaml -e \'print Psych::LIBYAML_VERSION\'') do
+      its(:stdout) { is_expected.to eq "0.1.7" }
+    end
+
+    describe command('ruby -r openssl -e \'print OpenSSL::OPENSSL_LIBRARY_VERSION\'') do
+      its(:stdout) { is_expected.to eq "OpenSSL 1.1.0g  2 Nov 2017" }
+    end
+
+    describe command('ruby -r readline -e \'print Readline::VERSION\'') do
+      its(:stdout) { is_expected.to eq "7.0" }
+    end
+
+    describe command('ruby -r zlib -e \'print Zlib::ZLIB_VERSION\'') do
+      its(:stdout) { is_expected.to eq "1.2.11" }
+    end
+  end
 end
 
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -e \'print RUBY_VERSION\'') do
-  its(:stdout) { is_expected.to eq "2.4.1" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -r yaml -e \'print Psych::LIBYAML_VERSION\''), if: os[:release] == '12.04' do
-  its(:stdout) { is_expected.to eq "0.1.4" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -r yaml -e \'print Psych::LIBYAML_VERSION\''), if: os[:release] == '14.04' do
-  its(:stdout) { is_expected.to eq "0.1.4" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -r yaml -e \'print Psych::LIBYAML_VERSION\''), if: os[:release] == '16.04' do
-  its(:stdout) { is_expected.to eq "0.1.6" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.3.4 -- ruby -r readline -e \'print Readline::VERSION\''), if: os[:release] == '12.04' do
-  its(:stdout) { is_expected.to eq "6.2" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.3.4 -- ruby -r readline -e \'print Readline::VERSION\''), if: os[:release] == '14.04' do
-  its(:stdout) { is_expected.to eq "6.3" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.3.4 -- ruby -r readline -e \'print Readline::VERSION\''), if: os[:release] == '16.04' do
-  its(:stdout) { is_expected.to eq "6.3" }
-end
-
-describe command('/usr/local/bin/chruby-exec ruby-2.4.1 -- ruby -r openssl -e \'print OpenSSL::VERSION\'') do
-  its(:stdout) { is_expected.to eq "2.0.3" }
-end
-
-describe file('/opt/rubies/ruby-2.4.1/etc/gemrc') do
+describe file('/opt/rubies/ruby-2.4.5/etc/gemrc') do
   it { is_expected.to be_file }
   it { is_expected.to be_owned_by 'root' }
   it { is_expected.to be_mode 644 }
 end
 
 describe package('bundler') do
-  it { is_expected.to be_installed.by('gem') }
+  it { is_expected.to be_installed.by('gem').with_version('1.17.1') }
 end
 
 describe package('pry') do
@@ -98,9 +92,9 @@ describe package('pry') do
 end
 
 describe command('which bundle') do
-  its(:stdout) { is_expected.to eq "/opt/rubies/ruby-2.4.1/bin/bundle\n" }
+  its(:stdout) { is_expected.to eq "/opt/rubies/ruby-2.4.5/bin/bundle\n" }
 end
 
 describe command('which pry') do
-  its(:stdout) { is_expected.to eq "/opt/rubies/ruby-2.4.1/bin/pry\n" }
+  its(:stdout) { is_expected.to eq "/opt/rubies/ruby-2.4.5/bin/pry\n" }
 end

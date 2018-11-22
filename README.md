@@ -126,7 +126,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools url</td>
     <td>String</td>
-    <td><tt>"https://github.com/gperftools/gperftools/releases/download/gperftools-2.3/gperftools-2.3.tar.gz"</tt></td>
+    <td><tt>"https://github.com/gperftools/gperftools/archive/gperftools-2.7.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['version']</tt></td>
@@ -134,7 +134,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools version</td>
     <td>String</td>
-    <td><tt>"2.3"</tt></td>
+    <td><tt>"2.7"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['google_perftools']['checksum']</tt></td>
@@ -142,7 +142,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>google_perftools checksum</td>
     <td>String</td>
-    <td><tt>"093452ad45d639093c144b4ec732a3417e8ee1f3744f2b0f8d45c996223385ce"</tt></td>
+    <td><tt>"3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['enable']</tt></td>
@@ -158,7 +158,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml url</td>
     <td>String</td>
-    <td><tt>"http://pyyaml.org/download/libyaml/yaml-0.1.7.tar.gz"</tt></td>
+    <td><tt>"https://pyyaml.org/download/libyaml/yaml-0.2.1.tar.gz"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['version']</tt></td>
@@ -166,7 +166,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml version</td>
     <td>String</td>
-    <td><tt>"0.1.7"</tt></td>
+    <td><tt>"0.2.1"</tt></td>
   </tr>
   <tr>
     <td colspan="3"><tt>['chruby_build']['libyaml']['checksum']</tt></td>
@@ -174,7 +174,7 @@ See [attributes/default.rb](attributes/default.rb)
   <tr>
     <td>libyaml checksum</td>
     <td>String</td>
-    <td><tt>"8088e457264a98ba451a90b8661fcb4f9d6f478f7265d48322a196cec2480729"</tt></td>
+    <td><tt>"78281145641a080fb32d6e7a87b9c0664d611dcb4d542e90baf731f51cbb59cd"</tt></td>
   </tr>
 </table>
 
@@ -198,10 +198,10 @@ See [attributes/default.rb](attributes/default.rb)
   "chruby_build": {
     "rubies": [
       {
-        "id": "ruby-2.3.4",
-        "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
-        "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
-        "gems": ["bundler"],
+        "id": "ruby-2.5.3",
+        "url": "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz",
+        "checksum": "9828d03852c37c20fa333a0264f2490f07338576734d910ee3fd538c9520846c",
+        "gems": ["bundler 1.17.1"],
         "environment": {
           "ARCHFLAGS": "-arch x86_64",
           "CFLAGS": "-g -O2",
@@ -218,17 +218,17 @@ See [attributes/default.rb](attributes/default.rb)
 Data bag name **must be** `rubies`
 
 ```sh
-$ knife data bag create rubies ruby-2.3.4
+$ knife data bag create rubies ruby-2.5.3
 ```
 
-Edit data bag `ruby-2.3.4.json`
+Edit data bag `ruby-2.5.3.json`
 
 ```json
 {
-  "id": "ruby-2.3.4",
-  "url": "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz",
-  "checksum": "98e18f17c933318d0e32fed3aea67e304f174d03170a38fd920c4fbe49fec0c3",
-  "gems": ["bundler"],
+  "id": "ruby-2.5.3",
+  "url": "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz",
+  "checksum": "9828d03852c37c20fa333a0264f2490f07338576734d910ee3fd538c9520846c",
+  "gems": ["bundler 1.17.1"],
   "environment": {
     "ARCHFLAGS": "-arch x86_64",
     "CFLAGS": "-g -O2",
@@ -277,11 +277,11 @@ Just include `chruby-build::rubies` in your node's `run_list`:
 
 #### Dependencies
 
-* [bundler](http://bundler.io/)
+* [bundler](https://bundler.io/)
 * [vagrant](https://www.vagrantup.com/)
 * [kitchen-vagrant](https://github.com/test-kitchen/kitchen-vagrant)
-* [berkshelf](http://berkshelf.com/)
-* [serverspec](http://serverspec.org/)
+* [berkshelf](https://docs.chef.io/berkshelf.html)
+* [serverspec](https://serverspec.org/)
 
 #### Installation
 

@@ -3,19 +3,25 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
-  solo_rb:
-    ssl_verify_mode: verify_peer
+  name: chef_zero
+  install_strategy: always
 
 platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-16.04
-  - name: ubuntu-16.04-chef-12
+  - name: ubuntu-14.04-chef-13
     driver:
-      box: bento/ubuntu-16.04
+      box: bento/ubuntu-14.04
     provisioner:
-      require_chef_omnibus: 12.21.3
+      product_name: chef
+      product_version: 13
+  - name: ubuntu-18.04-chef-14
+    driver:
+      box: bento/ubuntu-18.04
+    provisioner:
+      product_name: chef
+      product_version: 14
 
 suites:
   - name: default
@@ -43,8 +49,9 @@ suites:
         libyaml:
           enable: false
         rubies:
-          - id: "ruby-2.4.1"
-            url: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz"
+          - id: "ruby-2.4.5"
+            url: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.5.tar.gz"
+            checksum: "6737741ae6ffa61174c8a3dcdd8ba92bc38827827ab1d7ea1ec78bc3cefc5198"
             gems:
-              - bundler
+              - bundler 1.17.1
               - pry
