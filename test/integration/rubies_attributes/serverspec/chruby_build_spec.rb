@@ -51,7 +51,7 @@ describe "ruby-2.4.5" do
   before { command('chruby ruby-2.4.5') }
 
   describe command('ruby -r rbconfig -e \'print RbConfig::CONFIG["configure_args"]\'') do
-    its(:stdout) { is_expected.to eq " '--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.4.5'" }
+    its(:stdout) { is_expected.to eq " '--disable-install-doc' '--enable-shared' '--with-opt-dir=/usr/local' '--prefix=/opt/rubies/ruby-2.4.5' 'LIBS=-ltcmalloc_minimal' 'CPPFLAGS=-I/usr/include -I/usr/local/include'" }
   end
 
   describe command('ruby -e \'print RUBY_VERSION\'') do

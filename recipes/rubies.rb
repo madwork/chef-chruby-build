@@ -29,7 +29,9 @@ include_recipe "chruby-build::default"
 
 begin
   rubies = data_bag('rubies').map{ |rubie| data_bag_item('rubies', rubie) }
-rescue Chef::Exceptions::InvalidDataBagPath, Chef::Exceptions::InvalidDataBagName, Net::HTTPServerException => ex
+rescue Chef::Exceptions::InvalidDataBagPath,
+       Chef::Exceptions::InvalidDataBagName,
+       Net::HTTPServerException => ex
   Log.warn ex.message
   Log.info "Missing data bags directory #{Chef::Config[:data_bag_path]}/rubies, try with node attributes."
 end
@@ -86,11 +88,26 @@ if rubies.any?
   rubies.each do |rubie|
     prefix_dir = File.join(node['chruby_build']['rubies_path'], rubie['id'])
 
-    ark_environment = rubie.fetch('environment', {})
-    ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-ltcmalloc_minimal"].compact.join(" ")) if gperftools.enable
-    ark_environment.merge!("LIBS" => [ark_environment['LIBS'], "-lyaml"].compact.join(" ")) if libyaml.enable
+    ark_environment = rubie.fetch('environment', {}).dup
 
-    ark_autoconf_opts = ["--disable-install-doc", "--enable-shared", "--with-opt-dir=/usr/local", "--prefix=#{prefix_dir}"]
+    if gperftools.enable
+      ark_environment.merge!(
+        "LIBS" => [ark_environment['LIBS'], "-ltcmalloc_minimal"].compact.join(" ")
+      )
+    end
+
+    if libyaml.enable
+      ark_environment.merge!(
+        "LIBS" => [ark_environment['LIBS'], "-lyaml"].compact.join(" ")
+      )
+    end
+
+    ark_autoconf_opts = [
+      "--disable-install-doc",
+      "--enable-shared",
+      "--with-opt-dir=/usr/local",
+      "--prefix=#{prefix_dir}"
+    ]
 
     rubie_ark = Hash[[:name, :version].zip(rubie['id'].split('-', 2))] # "ruby-2.0.0-p451" => {:name=>"ruby", :version=>"2.0.0-p451"}
     ark "ruby" do
