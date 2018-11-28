@@ -45,7 +45,7 @@ suites:
           - libreadline-dev
           - zlib1g-dev
         google_perftools:
-          enable: false
+          enable: true
         libyaml:
           enable: false
         rubies:
@@ -55,3 +55,5 @@ suites:
             gems:
               - bundler 1.17.1
               - pry
+            environment:
+              CPPFLAGS: "-I/usr/include -I/usr/local/include"
