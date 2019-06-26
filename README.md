@@ -35,7 +35,7 @@ Edit `Berksfile`
 
     source "https://supermarket.chef.io"
 
-    cookbook 'chruby-build', '~> 1.0.1'
+    cookbook 'chruby-build', '~> 1.0.2'
 
 Install the cookbooks you specified in the Berksfile and their dependencies:
 
