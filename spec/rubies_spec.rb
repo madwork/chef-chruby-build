@@ -36,4 +36,11 @@ describe "chruby-build::rubies" do
 
     it { is_expected.to install_with_make_ark("libyaml") }
   end
+
+  describe "without default gemrc" do
+    default_attributes['chruby_build']['gemrc'] = false
+
+    it { is_expected.to_not create_directory('/opt/rubies/ruby-2.3.4/etc') }
+    it { is_expected.to_not create_template("/opt/rubies/ruby-2.3.4/etc/gemrc") }
+  end
 end
