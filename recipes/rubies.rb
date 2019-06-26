@@ -120,18 +120,20 @@ if rubies.any?
       action :install_with_make
     end
 
-    directory "etc" do
-      path File.join(prefix_dir, "etc")
-      owner "root"
-      group "root"
-    end
+    if node['chruby_build']['gemrc']
+      directory "etc" do
+        path File.join(prefix_dir, "etc")
+        owner "root"
+        group "root"
+      end
 
-    template "gemrc" do
-      path File.join(prefix_dir, "etc", "gemrc")
-      source "gemrc"
-      owner "root"
-      group "root"
-      mode "0644"
+      template "gemrc" do
+        path File.join(prefix_dir, "etc", "gemrc")
+        source "gemrc"
+        owner "root"
+        group "root"
+        mode "0644"
+      end
     end
 
     rubie['gems'].each do |gem|

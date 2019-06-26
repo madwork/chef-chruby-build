@@ -1,6 +1,7 @@
 default['chruby_build']['version'] = "0.3.9"
 default['chruby_build']['checksum'] = "7220a96e355b8a613929881c091ca85ec809153988d7d691299e0a16806b42fd"
 default['chruby_build']['auto_switching'] = true
+default['chruby_build']['gemrc'] = true
 
 default['chruby_build']['rubies'] = []
 default['chruby_build']['rubies_path'] = "/opt/rubies"
